@@ -1,3 +1,6 @@
+import { Product } from '../../shared/models/product';
+import { ShoppingCart } from '../../shared/models/shopping-cart';
+import { ShoppingCartService } from '../../shared/shopping-cart.service';
 import { Component, Input, OnInit } from '@angular/core';
 
 @Component({
@@ -7,8 +10,14 @@ import { Component, Input, OnInit } from '@angular/core';
 })
 export class ProductCardComponent {
 
-  @Input('product') product: any = {};
+  @Input('product') product: Product;
+  @Input('show-actions') showActions: boolean = true;
+  @Input('shopping-cart') shoppingCart: ShoppingCart;
   
-  constructor() { }
+  constructor(private shoppingCartService: ShoppingCartService) { }
+
+  addToCart() {
+    this.shoppingCartService.addToCart(this.product);
+  }
 
 }

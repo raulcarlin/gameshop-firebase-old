@@ -3,9 +3,25 @@
 @import "~font-awesome/css/font-awesome.css";
 
 body {
-    padding-top: 80px
+    padding-top: 60px
+}
+
+.sticky-top {
+    top: 50px;
 }
 
 .dropdown-toggle {
+    cursor: pointer;
+}
+
+.card { 
+    margin-bottom: 30px;
+}
+  
+.card-footer {
+    padding: 0;
+}
+
+.card-footer button {
     cursor: pointer;
 }

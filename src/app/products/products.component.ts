@@ -1,6 +1,9 @@
+import { Product } from '../shared/models/product';
+import { ShoppingCart } from '../shared/models/shopping-cart';
+import { ShoppingCartService } from '../shared/shopping-cart.service';
 import { ActivatedRoute } from '@angular/router';
-import { ProductsService } from '../products.service';
-import { Component, OnInit } from '@angular/core';
+import { ProductsService } from '../shared/products.service';
+import { Component, OnDestroy, OnInit } from '@angular/core';
 import 'rxjs/add/operator/switchMap';
 
 @Component({
@@ -8,24 +11,30 @@ import 'rxjs/add/operator/switchMap';
   templateUrl: './products.component.html',
   styleUrls: ['./products.component.css']
 })
-export class ProductsComponent {
+export class ProductsComponent implements OnInit, OnDestroy {
 
-  products: any[] = [];
-  filteredProducts: any[] = []
+  products: Product[] = [];
+  filteredProducts: Product[] = [];
+  shoppingCart: ShoppingCart;
   category;
   categories;
+  sub;
 
-  constructor(private prodService: ProductsService,
-  private route: ActivatedRoute) { 
+  constructor(
+    private prodService: ProductsService,
+    private route: ActivatedRoute,
+    private shoppingCartService: ShoppingCartService) { 
+
     prodService.getCategories()
     .switchMap(categories => {
       this.categories = categories; 
       return prodService.getProducts();
+    
     }).switchMap(products => {
       this.products = products;
       return route.queryParamMap;
-    })
-    .subscribe(params => {
+    
+    }).subscribe(params => {
       this.category = params.get('category');
       
       this.filteredProducts = (this.category) ? 
@@ -34,4 +43,13 @@ export class ProductsComponent {
     });
   }
 
+  async ngOnInit() {
+    this.sub = (await this.shoppingCartService.getCart()).subscribe(cart => {
+      this.shoppingCart = cart;
+    });
+  }
+
+  ngOnDestroy() {
+    this.sub.unsubscribe();
+  }
 }

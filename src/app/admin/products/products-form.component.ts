@@ -1,14 +1,14 @@
 import { ActivatedRoute, Router } from '@angular/router';
-import { ProductsService } from '../../products.service';
+import { ProductsService } from '../../shared/products.service';
 import { Component, OnInit } from '@angular/core';
 import 'rxjs/add/operator/take';
 
 @Component({
   selector: 'app-admin-products',
-  templateUrl: './admin-products.component.html',
-  styleUrls: ['./admin-products.component.css']
+  templateUrl: './products-form.component.html',
+  styleUrls: ['./products-form.component.css']
 })
-export class AdminProductsComponent {
+export class ProductsFormComponent {
 
   categories$;
   product: any = {};

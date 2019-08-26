@@ -1,13 +1,13 @@
 import { Router } from '@angular/router';
-import { ProductsService } from '../../products.service';
+import { ProductsService } from '../../shared/products.service';
 import { Component, OnInit } from '@angular/core';
 
 @Component({
-  selector: 'app-admin-products-list',
-  templateUrl: './admin-products-list.component.html',
-  styleUrls: ['./admin-products-list.component.css']
+  selector: 'app-products-list',
+  templateUrl: './products-list.component.html',
+  styleUrls: ['./products-list.component.css']
 })
-export class AdminProductsListComponent {
+export class ProductsListComponent {
   
     products$;
   
