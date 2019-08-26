@@ -6,11 +6,11 @@
 export const environment = {
   production: false,
   firebase: {
-    apiKey: "AIzaSyDJPoUwlvqLCCHXiG9QVWWak8WXwKBGFx8",
+    apiKey: "",
     authDomain: "game-shop-10c0f.firebaseapp.com",
     databaseURL: "https://game-shop-10c0f.firebaseio.com",
     projectId: "game-shop-10c0f",
     storageBucket: "",
-    messagingSenderId: "733057553973"
+    messagingSenderId: ""
   }
 };
